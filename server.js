@@ -20,7 +20,7 @@ app.get('/bets', (req, res) => {
 app.post('/enter', (req, res) => {
   const { user1Id, wager, stake } = req.body;
   Bet.create({
-    facebookId: user1Id,
+    userOneFacebookId: user1Id,
     wager,
     stake
   })
