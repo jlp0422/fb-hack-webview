@@ -2,7 +2,7 @@ const express = require('express')
 const path = require('path')
 const app = express();
 const { syncAndSeed, models } = require('./db');
-const { Bet } = models;
+const { Bet, User } = models;
 
 syncAndSeed();
 
@@ -25,6 +25,12 @@ app.post('/accept', (req, res) => {
   const { user1Id, user2Id, wager, stake} = req.body;
   Bet.acceptBet(user1Id, user2Id, wager, stake)
     .then(bet => res.send(bet));
+});
+
+app.post('/create', (req, res) => {
+  const { id, first_name, last_name, profile_pic } = req.body;
+  User.findOrCreateUser(id, first_name, last_name, profile_pic)
+    .then(user => res.send(user));
 });
 
 const port = process.env.PORT || 3000;

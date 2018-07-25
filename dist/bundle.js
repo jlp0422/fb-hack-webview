@@ -4116,7 +4116,10 @@ var store = (0, _redux.createStore)(reducer, middleware);
 
 var getUser = exports.getUser = function getUser(id) {
   _axios2.default.get('"https://graph.facebook.com/' + id + '?fields=first_name,last_name,profile_pic&access_token=EAADE4ZC13Pr0BAI2LMZCosTBl6dWdZC9ZByGY9iuzXZBQpPJl5X5iZBPhcuZCYkhFMH5x3uNKYMBm7Qi3hNMQaP8SZAzCZCKanu4tHt7qz2PZAn30myd0ZBDtr6ATbJ22BGcC3CUaFUajrXrsKCNJpotHip4xkZBUjoeeJoZBCFel6VwRkAZDZD').then(function (profile) {
-    return store.dispatch((0, _user.gotUser)(profile));
+    profile.id = id;
+    return _axios2.default.post('/create', profile);
+  }).then(function (user) {
+    return store.dispatch((0, _user.gotUser)(user));
   });
 };
 
@@ -31839,12 +31842,6 @@ var App = function (_React$Component) {
   }
 
   _createClass(App, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var id = location.pathname.split('?')[1];
-      (0, _store.getUser)(id);
-    }
-  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -35542,6 +35539,12 @@ var EnterBet = function (_React$Component) {
   }
 
   _createClass(EnterBet, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var id = this.props.location.search.slice(1);
+      (0, _store.getUser)(id);
+    }
+  }, {
     key: 'onChange',
     value: function onChange(ev) {
       var _ev$target = ev.target,
@@ -35555,10 +35558,7 @@ var EnterBet = function (_React$Component) {
   }, {
     key: 'onSubmit',
     value: function onSubmit() {
-      // console.log('bet submitted!')
-      // console.log(this.state)
       var createBet = this.props.createBet;
-      // console.log(this.state)
 
       createBet(this.state);
     }
@@ -35570,10 +35570,21 @@ var EnterBet = function (_React$Component) {
           stake = _state.stake;
       var onChange = this.onChange,
           onSubmit = this.onSubmit;
+      var user = this.props.user;
 
       return _react2.default.createElement(
         'div',
         null,
+        _react2.default.createElement(
+          'h1',
+          null,
+          _react2.default.createElement(
+            _reactBootstrap.Label,
+            null,
+            'Welcome, ',
+            user.firstName + ' ' + user.lastName
+          )
+        ),
         _react2.default.createElement(
           'h1',
           null,
@@ -35606,7 +35617,11 @@ var EnterBet = function (_React$Component) {
   return EnterBet;
 }(_react2.default.Component);
 
-var mapState = null;
+var mapState = function mapState(state) {
+  return {
+    user: state.user
+  };
+};
 
 var mapDispatch = function mapDispatch(dispatch) {
   return {

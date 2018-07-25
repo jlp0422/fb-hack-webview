@@ -9,11 +9,6 @@ class App extends React.Component {
     super();
   }
 
-  componentDidMount() {
-    const id = location.pathname.split('?')[1];
-    getUser(id);
-  }
-
   render() {
     return (
       <HashRouter>

@@ -6,9 +6,34 @@ const User = conn.define('user', {
     type: Sequelize.INTEGER,
     primaryKey: true
   },
-  token: {
+  firstName: {
+    type: Sequelize.STRING
+  },
+  lastName: {
+    type: Sequelize.STRING
+  },
+  pic: {
     type: Sequelize.STRING
   }
 });
+
+User.findOrCreateUser = function(id, firstName, lastName, pic) {
+  return User.find({
+    where: {
+      facebookId: id
+    }
+  })
+    .then(user => {
+      if(user) {
+        return user;
+      }
+      return User.create({
+        facebookId: id,
+        firstName,
+        lastName,
+        pic
+      });
+    });
+};
 
 module.exports = User;
