@@ -13,7 +13,7 @@ const reducer = combineReducers({ bets, user });
 const store = createStore(reducer, middleware);
 
 export const getUser = id => {
-  axios.get(`"https://graph.facebook.com/${id}?fields=first_name,last_name,profile_pic&access_token=EAADE4ZC13Pr0BAI2LMZCosTBl6dWdZC9ZByGY9iuzXZBQpPJl5X5iZBPhcuZCYkhFMH5x3uNKYMBm7Qi3hNMQaP8SZAzCZCKanu4tHt7qz2PZAn30myd0ZBDtr6ATbJ22BGcC3CUaFUajrXrsKCNJpotHip4xkZBUjoeeJoZBCFel6VwRkAZDZD`)
+  axios.get(`https://graph.facebook.com/${id}?fields=first_name,last_name,profile_pic&access_token=EAADE4ZC13Pr0BAI2LMZCosTBl6dWdZC9ZByGY9iuzXZBQpPJl5X5iZBPhcuZCYkhFMH5x3uNKYMBm7Qi3hNMQaP8SZAzCZCKanu4tHt7qz2PZAn30myd0ZBDtr6ATbJ22BGcC3CUaFUajrXrsKCNJpotHip4xkZBUjoeeJoZBCFel6VwRkAZDZD`)
     .then(profile => {
       profile.id = id;
       return axios.post('/create', profile);
