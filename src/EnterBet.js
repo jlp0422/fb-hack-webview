@@ -39,10 +39,10 @@ class EnterBet extends React.Component {
     const { user } = this.props;
     return (
       <div>
-        <h1><Label>Welcome, { `${user.first_name} ${user.last_name}`}</Label></h1>
-        <h1><Label>Enter your wager:</Label></h1>
+        <h1 style={ styles.header }>HOW ABOUT A LITTLE... FRIENDLY WAGER, { `${user.first_name} ${user.last_name}`}</h1>
+        <h1><Label bsStyle='info'>Enter your wager:</Label></h1>
         <input name="stake" value={ stake } onChange={ onChange } placeholder='What are the stakes?'/>
-        <h1><Label>What are you betting?</Label></h1>
+        <h1><Label bsStyle='info'>What are you betting?</Label></h1>
         <input name="wager" value={ wager } onChange={ onChange } placeholder='What is gonna happen?' />
         <Button bsStyle='info' onClick={ onSubmit }>Submit</Button>
       </div>
@@ -63,3 +63,9 @@ const mapDispatch = (dispatch) => {
 };
 
 export default connect(mapState, mapDispatch)(EnterBet);
+
+const styles ={
+  header: {
+    color: '#5271ff'
+  }
+}
