@@ -32,12 +32,12 @@ export const createBetOnServer = (bet) => {
 
 const store = (state = [], action) => {
   switch(action.type) {
-    case GET_BETS:
-      return action.bets;
-    case CREATE_BET:
-      return [ ...state, action.bet ];
-    default:
-      return state;
+  case GET_BETS:
+    return action.bets;
+  case CREATE_BET:
+    return [ ...state, action.bet ];
+  default:
+    return state;
   }
 }
 

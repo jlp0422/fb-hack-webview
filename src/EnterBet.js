@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Label } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import { createBetOnServer } from './store';
 
 class EnterBet extends React.Component {
