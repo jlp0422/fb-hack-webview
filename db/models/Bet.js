@@ -16,26 +16,27 @@ const Bet = conn.define('bet', {
   }
 });
 
-Bet.findOrCreateBet = function(user1Id, wager, stake) {
-  return Bet.find({
-    where: {
-      userOneFacebookId: user1Id,
-      wager,
-      stake,
-      status: 'open'
-    }
-  })
-    .then(bet => {
-      if(bet) {
-        return bet;
-      }
-      return Bet.create({
-        userOneFacebookId: user1Id,
-        wager,
-        stake
-      });
-    });
-};
+// Bet.findOrCreateBet = function(user1Id, wager, stake) {
+//   return Bet.find({
+//     where: {
+//       userOneFacebookId: user1Id,
+//       wager,
+//       stake,
+//       status: 'open'
+//     }
+//   })
+//     .then(bet => {
+//       if(bet) {
+//         return bet;
+//       }
+//       return Bet.create({
+//         userOneFacebookId: user1Id,
+//         wager,
+//         stake
+//       })
+
+//     });
+// };
 
 Bet.acceptBet = function(user1Id, user2Id, wager, stake) {
   return Bet.find({
@@ -52,11 +53,7 @@ Bet.acceptBet = function(user1Id, user2Id, wager, stake) {
     }
   })
     .then(bet => {
-      if(bet) {
-        return bet;
-      } else {
-        throw { status: 404 };
-      }
+      return bet;
     });
 };
 

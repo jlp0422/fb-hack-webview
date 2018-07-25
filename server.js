@@ -2,6 +2,8 @@ const express = require('express')
 const path = require('path')
 const app = express();
 const { syncAndSeed, models } = require('./db');
+const Sequelize = require('sequelize');
+const { Op } = Sequelize;
 const { Bet, User } = models;
 
 syncAndSeed();
@@ -16,8 +18,12 @@ app.get('/bets', (req, res) => {
 });
 
 app.post('/enter', (req, res) => {
-  const { user1Id, wager, stake } = req.body;
-  Bet.findOrCreateBet(user1Id, wager, stake)
+  const { user1Id } = req.body;
+  Bet.findOrCreate({
+    where: {
+      [Op.or]: [{ userOneFacebookId: user1Id}, {userTwoFacebookId: user1Id}]
+    }
+  })
     .then(bet => res.send(bet));
 });
 
@@ -38,8 +44,7 @@ app.post('/create', (req, res) => {
     }
   })
     .then(user => {
-      console.log(user[0])
-      res.send(user[0])});
+      res.send(user[0])})
 });
 
 const port = process.env.PORT || 3000;
