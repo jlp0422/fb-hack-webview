@@ -6,41 +6,41 @@ const User = conn.define('user', {
     type: Sequelize.INTEGER,
     primaryKey: true
   },
-  firstName: {
+  first_name: {
     type: Sequelize.STRING
   },
-  lastName: {
+  last_name: {
     type: Sequelize.STRING
   },
-  pic: {
+  profile_pic: {
     type: Sequelize.STRING
   }
 });
 
-User.findOrCreateUser = function(id, firstName, lastName, pic) {
-  return User.find({
-    where: {
-      facebookId: id
-    }
-  })
-    .then(user => {
-      if(user) {
-        return user;
-      }
-      return User.create({
-        facebookId: id,
-        firstName,
-        lastName,
-        pic
-      })
-        .then(() => {
-          return User.find({
-            where: {
-              facebookId: id
-            }
-          });
-        });
-    });
-};
+// User.findOrCreateUser = function(id, firstName, lastName, pic) {
+//   return User.find({
+//     where: {
+//       facebookId: id
+//     }
+//   })
+//     .then(user => {
+//       if(user) {
+//         return user;
+//       }
+//       return User.create({
+//         facebookId: id,
+//         firstName,
+//         lastName,
+//         pic
+//       })
+//         .then(() => {
+//           return User.find({
+//             where: {
+//               facebookId: id
+//             }
+//           });
+//         });
+//     });
+// };
 
 module.exports = User;
