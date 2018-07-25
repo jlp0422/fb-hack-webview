@@ -5,6 +5,7 @@ const { syncAndSeed, models } = require('./db');
 const Sequelize = require('sequelize');
 const { Op } = Sequelize;
 const { Bet, User } = models;
+const axios = require('axios');
 
 syncAndSeed();
 
@@ -19,14 +20,23 @@ app.get('/bets', (req, res) => {
 
 app.post('/enter', (req, res) => {
   const { user1Id, wager, stake } = req.body;
-  Bet.findOrCreate({
-    where: {
-      [Op.or]: [{ userOneFacebookId: user1Id}, {userTwoFacebookId: user1Id}],
-      wager,
-      stake
-    }
+  let bet;
+  Bet.create({
+    userOneFacebookId: user1Id,
+    wager,
+    stake
   })
-    .then(bet => res.send(bet[0]));
+    .then(_bet => bet = _bet)
+    .then(() => {
+      return User.find({
+        where: {
+          facebookId: user1Id
+        }
+      })
+    }).then(user => {
+      console.log(user)
+      axios.post('https://fb-hack-server.herokuapp.com/webhook', { first_name: user.name, wager, stake});
+    }).then(() => res.send(bet));
 });
 
 app.post('/accept', (req, res) => {
