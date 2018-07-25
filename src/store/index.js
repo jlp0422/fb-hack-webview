@@ -5,10 +5,11 @@ import axios from 'axios';
 
 import bets from './bets';
 import user, { gotUser } from './user';
+import users, { addUser } from './users';
 
 const middleware = applyMiddleware(thunk, logger);
 
-const reducer = combineReducers({ bets, user });
+const reducer = combineReducers({ bets, user, users });
 
 const store = createStore(reducer, middleware);
 
@@ -21,7 +22,8 @@ export const getUser = id => {
     })
     .then(user => {
       console.log(user)
-      store.dispatch(gotUser(user.data))
+      store.dispatch(gotUser(user.data));
+      store.dispatch(addUser(user));
     });
 };
 

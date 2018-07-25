@@ -1,4 +1,5 @@
 import React from 'react';
+import { Label, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 class AllBets extends React.Component {
@@ -23,8 +24,8 @@ class AllBets extends React.Component {
               const user1 = users.find(user => user.facebookId === bet.userOneFacebookId);
               return (
                 <div key={bet.id}>
-                  {bet.wager} {bet.stake} {user1.first_name} {user1.last_name}
-                  <button onClick={() => onAddUserToBet(user.facebookId, bet)}>Take Bet!</button>
+                  <h1><Label>{ bet.wager }<br />{ bet.stake }<br />{ user1.first_name }</Label></h1>
+                  <Button onClick={() => onAddUserToBet(user.facebookId, bet)}>Take Bet!</Button>
                 </div>
               );
             })

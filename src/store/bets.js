@@ -10,9 +10,9 @@ export const getBetsFromServer = () => {
   return dispatch => {
     return axios.get('/bets')
       .then(res => res.data)
-      .then(bets => dispatch(getBets(bets)))
-  }
-}
+      .then(bets => dispatch(getBets(bets)));
+  };
+};
 
 export const createBetOnServer = (bet) => {
   return dispatch => {

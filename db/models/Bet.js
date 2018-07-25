@@ -38,22 +38,16 @@ const Bet = conn.define('bet', {
 //     });
 // };
 
-Bet.acceptBet = function(user1Id, user2Id, wager, stake) {
+Bet.acceptBet = function(user1Id, user2Id) {
   return Bet.find({
     where: {
-      userOneFacebookId: {
-        [Op.or]: [user1Id, user2Id]
-      },
-      userTwoFacebookId: {
-        [Op.or]: [user1Id, user2Id]
-      },
-      wager,
-      stake,
-      status: 'open'
+      userOneFacebookId: user1Id
     }
   })
     .then(bet => {
-      return bet;
+      return bet.update({
+        userTwoFacebookId: user2Id
+      });
     });
 };
 
