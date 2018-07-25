@@ -18,13 +18,15 @@ app.get('/bets', (req, res) => {
 });
 
 app.post('/enter', (req, res) => {
-  const { user1Id } = req.body;
+  const { user1Id, wager, stake } = req.body;
   Bet.findOrCreate({
     where: {
-      [Op.or]: [{ userOneFacebookId: user1Id}, {userTwoFacebookId: user1Id}]
+      [Op.or]: [{ userOneFacebookId: user1Id}, {userTwoFacebookId: user1Id}],
+      wager,
+      stake
     }
   })
-    .then(bet => res.send(bet));
+    .then(bet => res.send(bet[0]));
 });
 
 app.post('/accept', (req, res) => {
