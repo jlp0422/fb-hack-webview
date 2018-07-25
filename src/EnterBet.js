@@ -38,7 +38,7 @@ class EnterBet extends React.Component {
     const { onChange, onSubmit } = this
     const { user } = this.props;
     return (
-      <div styles={ styles.container }>
+      <div style={ styles.container }>
         <h1 style={ styles.header }>HOW ABOUT A LITTLE... <br />FRIENDLY WAGER, { `${user.first_name} ${user.last_name}`}</h1>
         <h1><Label bsStyle='info'>Enter your wager:</Label></h1>
         <input name="stake" value={ stake } onChange={ onChange } placeholder='What are the stakes?'/>
@@ -67,9 +67,9 @@ export default connect(mapState, mapDispatch)(EnterBet);
 const styles ={
   container: {
     display: 'flex',
-    width: '50%',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    width: '50%'
   },
   header: {
     color: '#5271ff'
