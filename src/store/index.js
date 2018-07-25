@@ -20,6 +20,7 @@ export const getUser = id => {
       return axios.post('/create', profile);
     })
     .then(user => {
+      console.log(user)
       store.dispatch(gotUser(user))
     });
 };
