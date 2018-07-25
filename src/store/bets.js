@@ -21,7 +21,7 @@ export const createBetOnServer = (bet) => {
     return axios.post('/enter', bet)
       .then(res => res.data)
       .then(bet => dispatch(createBet(bet)))
-      .then((() => location.hash = '/allbets'))
+      .then((() => location.hash = '/allbets'));
   }
 }
 
