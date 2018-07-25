@@ -1,42 +1,21 @@
 import React from 'react';
-import { Button, Label } from 'react-bootstrap';
+import { HashRouter, Switch, Route } from 'react-router-dom';
+
+import EnterBet from './EnterBet';
 
 class App extends React.Component {
   constructor() {
     super();
-    this.state = {
-      wagerName: '',
-      wagerType: '',
-      wagerAmount: ''
-    };
-    this.onChange = this.onChange.bind(this)
-    this.onSubmit = this.onSubmit.bind(this)
-  }
-
-  onChange(ev) {
-    const { name, value } = ev.target
-    const change = {}
-    change[name] = value
-    this.setState(change)
-  }
-
-  onSubmit() {
-    console.log('bet submitted!')
-    console.log(this.state)
   }
 
   render() {
-    const { wagerName, wagerType, wagerAmount } = this.state
-    const { onChange, onSubmit } = this
     return (
-      <div>
-        <h1><Label>Enter your wager:</Label></h1>
-        <input name="wagerName" value={ wagerName } onChange={ onChange } />
-        <h1><Label>What are you betting?</Label></h1>
-        <input name="wagerType" value={ wagerType } onChange={ onChange } />
-        <Button bsStyle='primary' onClick={ onSubmit }>Submit</Button>
-      </div>
-    )
+      <HashRouter>
+        <Switch>
+          <Route path='/enter' component={ EnterBet } />
+        </Switch>
+      </HashRouter>
+    );
   }
 }
 
