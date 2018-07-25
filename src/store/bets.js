@@ -15,7 +15,6 @@ export const getBetsFromServer = () => {
 }
 
 export const createBetOnServer = (bet) => {
-  console.log(bet)
   return dispatch => {
     return axios.post('/enter', bet)
       .then(res => res.data)

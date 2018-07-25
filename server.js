@@ -6,6 +6,7 @@ const { Bet } = models;
 
 syncAndSeed();
 
+app.use(require('body-parser').json());
 app.use(express.static(path.join(__dirname, './public')));
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
 
@@ -15,9 +16,8 @@ app.get('/bets', (req, res) => {
 });
 
 app.post('/enter', (req, res) => {
-  console.log(req.body)
-  const { user1Id, wager, stake } = req.body.bet;
-  Bet.findOrCreateBet(user1Id, null, wager, stake)
+  const { user1Id, wager, stake } = req.body;
+  Bet.findOrCreateBet(user1Id, wager, stake)
     .then(bet => res.send(bet));
 });
 

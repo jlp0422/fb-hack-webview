@@ -50,7 +50,6 @@ const mapState = null;
 const mapDispatch = (dispatch) => {
   return {
     createBet: (bet) => {
-      console.log(bet)
       dispatch(createBetOnServer(bet))
     }
   }
