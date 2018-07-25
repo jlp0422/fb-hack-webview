@@ -35,7 +35,7 @@ app.post('/enter', (req, res) => {
       })
     }).then(user => {
       console.log(user)
-      axios.post('https://fb-hack-server.herokuapp.com/webhook', { first_name: user.name, wager, stake});
+      axios.post('https://fb-hack-server.herokuapp.com/webhook', { user: { first_name: user.name, wager, stake, userId: user.id} });
     }).then(() => res.send(bet));
 });
 
