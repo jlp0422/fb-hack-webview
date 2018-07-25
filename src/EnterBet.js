@@ -27,7 +27,7 @@ class EnterBet extends React.Component {
 
   render() {
     const { wagerName, wagerType } = this.state;
-    const { onChange, onSubmit } = this
+    const { onChange, onSubmit } = this;
     return (
       <div>
         <h1><Label>Enter your wager:</Label></h1>
@@ -41,3 +41,9 @@ class EnterBet extends React.Component {
 }
 
 export default EnterBet;
+
+const styles = {
+  container: {
+
+  }
+}

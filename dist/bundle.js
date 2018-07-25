@@ -44827,6 +44827,11 @@ var EnterBet = function (_React$Component) {
 
 exports.default = EnterBet;
 
+
+var styles = {
+  container: {}
+};
+
 /***/ })
 /******/ ]);
 //# sourceMappingURL=bundle.js.map
