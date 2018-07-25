@@ -9,6 +9,24 @@ class App extends React.Component {
     super();
   }
 
+  componentDidMount() {
+    MessengerExtensions.askPermission(
+      function(permission_response) {
+        // Person grants or rejects the asked permission.
+        let permissions = permission_response.permissions; // list of all permissions granted
+        let isGranted = permission_response.isGranted;
+
+        if (isGranted) {
+          // User has granted user_profile permission
+        }
+
+      }, function(errorCode, errorMessage) {
+        // Error occurred
+      },
+      "user_profile"
+    );
+  }
+
   render() {
     return (
       <HashRouter>
