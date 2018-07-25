@@ -43,7 +43,7 @@ const store = (state = [], action) => {
       return [ ...state, action.bet ];
     case UPDATE_BET:
       bets = state.map(bet => bet.id === action.bet.id ? action.bet : bet);
-      return [ ...bets, action.bet ];
+      return bets;
     default:
       return state;
   }
