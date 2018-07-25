@@ -15,7 +15,8 @@ app.get('/bets', (req, res) => {
 });
 
 app.post('/enter', (req, res) => {
-  const { user1Id, wager, stake} = req.body;
+  console.log(req.body)
+  const { user1Id, wager, stake } = req.body.bet;
   Bet.findOrCreateBet(user1Id, null, wager, stake)
     .then(bet => res.send(bet));
 });

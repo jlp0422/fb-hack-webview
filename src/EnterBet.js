@@ -1,13 +1,15 @@
 import React from 'react';
 import { Button, Label } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { createBetOnServer } from './store';
 
 class EnterBet extends React.Component {
   constructor() {
     super();
     this.state = {
-      wagerName: '',
-      wagerType: '',
-      wagerAmount: ''
+      wager: '',
+      stake: '',
+      user1Id: 12345,
     };
     this.onChange = this.onChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
@@ -21,29 +23,37 @@ class EnterBet extends React.Component {
   }
 
   onSubmit() {
-    console.log('bet submitted!')
-    console.log(this.state)
+    // console.log('bet submitted!')
+    // console.log(this.state)
+    const { createBet } = this.props;
+    // console.log(this.state)
+    createBet(this.state);
   }
 
   render() {
-    const { wagerName, wagerType } = this.state;
-    const { onChange, onSubmit } = this;
+    const { wager, stake } = this.state;
+    const { onChange, onSubmit } = this
     return (
       <div>
         <h1><Label>Enter your wager:</Label></h1>
-        <input name="wagerName" value={ wagerName } onChange={ onChange } />
+        <input name="stake" value={ stake } onChange={ onChange } placeholder='What are the stakes?'/>
         <h1><Label>What are you betting?</Label></h1>
-        <input name="wagerType" value={ wagerType } onChange={ onChange } />
+        <input name="wager" value={ wager } onChange={ onChange } placeholder='What is gonna happen?' />
         <Button bsStyle='info' onClick={ onSubmit }>Submit</Button>
       </div>
     );
   }
 }
 
-export default EnterBet;
+const mapState = null;
 
-const styles = {
-  container: {
-
+const mapDispatch = (dispatch) => {
+  return {
+    createBet: (bet) => {
+      console.log(bet)
+      dispatch(createBetOnServer(bet))
+    }
   }
 }
+
+export default connect(mapState, mapDispatch)(EnterBet);
