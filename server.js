@@ -37,7 +37,9 @@ app.post('/create', (req, res) => {
       profile_pic
     }
   })
-    .then(user => res.send(user[0]));
+    .then(user => {
+      console.log(user[0])
+      res.send(user[0])});
 });
 
 const port = process.env.PORT || 3000;
