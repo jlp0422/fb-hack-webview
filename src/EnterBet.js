@@ -5,12 +5,12 @@ import axios from 'axios';
 import { createBetOnServer, getUser } from './store';
 
 class EnterBet extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       wager: '',
       stake: '',
-      user1Id: 12345,
+      user1Id: this.props.location.search.slice(1)
     };
     this.onChange = this.onChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
