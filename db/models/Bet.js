@@ -19,7 +19,7 @@ const Bet = conn.define('bet', {
 Bet.findOrCreateBet = function(user1Id, wager, stake) {
   return Bet.find({
     where: {
-      userOneId: user1Id,
+      userOneFacebookId: user1Id,
       wager,
       stake,
       status: 'open'
@@ -30,7 +30,7 @@ Bet.findOrCreateBet = function(user1Id, wager, stake) {
         return bet;
       }
       return Bet.create({
-        userOneId: user1Id,
+        userOneFacebookId: user1Id,
         wager,
         stake
       });
@@ -40,10 +40,10 @@ Bet.findOrCreateBet = function(user1Id, wager, stake) {
 Bet.acceptBet = function(user1Id, user2Id, wager, stake) {
   return Bet.find({
     where: {
-      userOneId: {
+      userOneFacebookId: {
         [Op.or]: [user1Id, user2Id]
       },
-      userTwoId: {
+      userTwoFacebookId: {
         [Op.or]: [user1Id, user2Id]
       },
       wager,
