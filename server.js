@@ -28,6 +28,7 @@ app.post('/accept', (req, res) => {
 });
 
 app.post('/create', (req, res) => {
+  console.log(req.body)
   const { id, first_name, last_name, profile_pic } = req.body;
   User.findOrCreateUser(id, first_name, last_name, profile_pic)
     .then(user => res.send(user));
