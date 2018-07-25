@@ -29,7 +29,7 @@ class AllBets extends React.Component {
               return (
                 <div key={bet.id}>
                   <h1><Label bsStyle={ style }>
-                    { bet.wager }<br />{ bet.stake }<br />{ user1.first_name }
+                    { bet.wager }<br />{ bet.stake }<br />{ user1.first_name }<br />
                     { bet.userTwoFacebookId ? users.find(user => user.facebookId === bet.userTwoFacebookId).first_name : null }
                   </Label></h1>
                   <Button disabled={ style === 'default'} onClick={() => onAddUserToBet(user.facebookId, bet)}>Take Bet!</Button>
