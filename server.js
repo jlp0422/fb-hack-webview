@@ -30,7 +30,7 @@ app.post('/enter', (req, res) => {
     .then(() => {
       return User.find({
         where: {
-          facebookID: user1Id
+          facebookId: user1Id
         }
       })
     }).then(user => {
