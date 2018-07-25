@@ -6,6 +6,7 @@ import { updateBetOnServer } from './store';
 class AllBets extends React.Component {
   constructor() {
     super();
+    this.onAddUserToBet = this.onAddUserToBet.bind(this);
   }
 
   onAddUserToBet(id, bet) {
