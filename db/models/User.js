@@ -3,7 +3,7 @@ const { Sequelize } = conn;
 
 const User = conn.define('user', {
   facebookId: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     primaryKey: true
   },
   first_name: {
