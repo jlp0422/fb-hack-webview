@@ -16,12 +16,15 @@ app.get('/bets', (req, res) => {
 
 app.post('/enter', (req, res) => {
   const { user1Id, wager, stake} = req.body;
-  Bet.findOrCreateBet(user1Id, null, wager, stake)
+  Bet.findOrCreateBet(user1Id, wager, stake)
     .then(bet => res.send(bet));
 });
 
 app.post('/accept', (req, res) => {
+  const { user1Id, user2Id, wager, stake} = req.body;
+  Bet.acceptBet(user1Id, user2Id, wager, stake)
+    .then(bet => res.send(bet));
 });
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`port of call: ${port}`));
