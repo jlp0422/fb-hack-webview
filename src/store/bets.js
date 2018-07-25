@@ -42,7 +42,7 @@ const store = (state = [], action) => {
     case CREATE_BET:
       return [ ...state, action.bet ];
     case UPDATE_BET:
-      bets = state.filter(bet => bet.id === action.bet.id)
+      bets = state.map(bet => bet.id === action.bet.id ? action.bet : bet);
       return [ ...bets, action.bet ];
     default:
       return state;
