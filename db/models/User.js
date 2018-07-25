@@ -32,7 +32,14 @@ User.findOrCreateUser = function(id, firstName, lastName, pic) {
         firstName,
         lastName,
         pic
-      });
+      })
+        .then(() => {
+          return User.find({
+            where: {
+              facebookId: id
+            }
+          });
+        });
     });
 };
 
