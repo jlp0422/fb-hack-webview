@@ -1,13 +1,14 @@
 import React from 'react';
+import { Button, Label } from 'react-bootstrap';
 
 class App extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
       wagerName: '',
       wagerType: '',
       wagerAmount: ''
-    }
+    };
     this.onChange = this.onChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
   }
@@ -29,16 +30,11 @@ class App extends React.Component {
     const { onChange, onSubmit } = this
     return (
       <div>
-        <label>What do you want to bet on</label>
-          <input name="wagerName" value={ wagerName } onChange={ onChange } />
-        <br/>
-        <label>What do you want to bet with</label>
-          <input name="wagerType" value={ wagerType } onChange={ onChange } />
-        <br />
-        <label>How much do you want to bet</label>
-          <input name="wagerAmount" value={ wagerAmount } onChange={ onChange } />
-        <br />
-        <button onClick={ onSubmit }>Submit</button>
+        <h1><Label>Enter your wager:</Label></h1>
+        <input name="wagerName" value={ wagerName } onChange={ onChange } />
+        <h1><Label>What are you betting?</Label></h1>
+        <input name="wagerType" value={ wagerType } onChange={ onChange } />
+        <Button bsStyle='primary' onClick={ onSubmit }>Submit</Button>
       </div>
     )
   }

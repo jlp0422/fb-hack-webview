@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "npm run wepback",
+    "postinstall": "npm run webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "./node_modules/webpack/bin/webpack.js",
     "start:dev": "npm run webpack -- -w & nodemon server.js --ignore dist/ --ignore src/"
@@ -15,6 +15,7 @@
   "dependencies": {
     "express": "^4.16.3",
     "react": "^16.4.1",
+    "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.1",
     "react-router-dom": "^4.3.1",
     "webpack": "^3.11.0"
