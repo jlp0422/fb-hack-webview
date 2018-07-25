@@ -3,6 +3,7 @@ import { HashRouter, Switch, Route } from 'react-router-dom';
 import { getUser } from './store';
 
 import EnterBet from './EnterBet';
+import AllBets from './AllBets';
 
 class App extends React.Component {
   constructor() {
@@ -32,6 +33,7 @@ class App extends React.Component {
       <HashRouter>
         <Switch>
           <Route path='/enter' component={ EnterBet } />
+          <Route path='/allbets' component={ AllBets } />
         </Switch>
       </HashRouter>
     );
