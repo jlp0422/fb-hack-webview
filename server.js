@@ -30,10 +30,12 @@ app.post('/accept', (req, res) => {
 app.post('/create', (req, res) => {
   const { id, first_name, last_name, profile_pic } = req.body;
   User.findOrCreate({
-    facebookId: id,
-    first_name,
-    last_name,
-    profile_pic
+    where: {
+      facebookId: id,
+      first_name,
+      last_name,
+      profile_pic
+    }
   })
     .then(user => res.send(user[0]));
 });
