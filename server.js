@@ -30,7 +30,10 @@ app.post('/accept', (req, res) => {
 app.post('/create', (req, res) => {
   const { id, first_name, last_name, profile_pic } = req.body;
   User.findOrCreateUser(id, first_name, last_name, profile_pic)
-    .then(user => res.send(user));
+    .then(user => {
+      console.log(user);
+      res.send(user)
+    });
 });
 
 const port = process.env.PORT || 3000;
