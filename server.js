@@ -30,8 +30,8 @@ app.post('/enter', (req, res) => {
 });
 
 app.post('/accept', (req, res) => {
-  const { user1Id, user2Id, wager, stake} = req.body;
-  Bet.acceptBet(user1Id, user2Id, wager, stake)
+  const { user1Id, user2Id } = req.body;
+  Bet.acceptBet(user1Id, user2Id)
     .then(bet => res.send(bet));
 });
 
