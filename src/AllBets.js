@@ -7,9 +7,9 @@ class AllBets extends React.Component {
     super();
   }
 
-  onAddUserToBet(id, bet) {
-    const { id, stake, wager }
-  }
+  // onAddUserToBet(id, bet) {
+  //   const { id, stake, wager }
+  // }
 
   render() {
     const { onAddUserToBet } = this;
