@@ -1,15 +1,18 @@
 import React from 'react';
 import { Label, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { updateBetOnServer } from './store';
 
 class AllBets extends React.Component {
   constructor() {
     super();
   }
 
-  // onAddUserToBet(id, bet) {
-  //   const { id, stake, wager }
-  // }
+  onAddUserToBet(id, bet) {
+    const { userOneFacebookId, stake, wager } = bet;
+    const { updateBet } = this.props;
+    updateBet({ user1Id: userOneFacebookId, user2Id: id });
+  }
 
   render() {
     const { onAddUserToBet } = this;
