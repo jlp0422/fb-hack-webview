@@ -33,7 +33,7 @@ class App extends React.Component {
       <HashRouter>
         <Switch>
           <Route path='/enter' component={ EnterBet } />
-          <Route path='/allbets' component={ AllBets } />
+          <Route path='/bets' component={ AllBets } />
         </Switch>
       </HashRouter>
     );
