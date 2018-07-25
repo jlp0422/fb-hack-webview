@@ -17,7 +17,6 @@ export const getUser = id => {
     .then(response => {
       const profile = response.data;
       profile.id = id;
-      console.log(profile);
       return axios.post('/create', profile);
     })
     .then(user => store.dispatch(gotUser(user)));
