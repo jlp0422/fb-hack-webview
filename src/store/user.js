@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 const GOT_USER = 'GOT_USER';
 
 export const gotUser = user => ({ type: GOT_USER, user });

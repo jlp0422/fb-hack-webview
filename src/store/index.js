@@ -21,7 +21,7 @@ export const getUser = id => {
     })
     .then(user => {
       console.log(user)
-      store.dispatch(gotUser(user))
+      store.dispatch(gotUser(user.data))
     });
 };
 
